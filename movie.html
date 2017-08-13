@@ -1,0 +1,123 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+  <meta charset="utf-8">
+  <title>Movie List</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <script src="js/libs/angular.js"></script>
+</head>
+
+<body>
+
+  <section class="container-fluid movie-list">
+
+    <h2 class="display-4"> Movie List </h2>
+
+    <!-- <section ng-controller="MoviesController as movies">
+        <ul>
+          <li
+            class="list-item"
+            ng-class="{
+              'old': movie.year < 1995,
+              'modern': movie.year > 1995 && movie.year < 2000,
+              'new': movie.year > 2000
+            }"
+            ng-repeat="movie in movies.favorites">
+            <a ng-href="http://www.imdb.com/title/tt0109830/"><strong>{{ movie.title }}</strong></a>
+            <span ng-hide="!movie.popular"> 🌟 </span>
+            <span ng-show="movie.year > '2000'">🆕</span>
+            <section>
+
+              <em>{{ movie.year }}</em>
+
+            </section>
+            <section ng-switch="movie.category">
+                <p ng-switch-when="action">Action</p>
+                <p ng-switch-when="drama">Action</p>
+                <p ng-switch-default>Action</p>
+            </section>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Movie Year</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" ng-model="movie.year">
+            </div>
+          </li>
+        </ul>
+
+    </section> -->
+
+
+
+    <section ng-controller="MoviesController as movies">
+      <form ng-submit="movies.addMovie();" class="jumbotron">
+        <h4>Add a Movie</h4>
+        <div class="form-group">
+          <label for="movieTitle">Title</label>
+          <input type="text" class="form-control" id="movieTitle" placeholder="Inception">
+        </div>
+        <div class="form-group">
+          <label for="movieYear">Year</label>
+          <input type="tel" class="form-control" id="movieYear" placeholder="2010">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Category</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option value="action">Action</option>
+            <option value="drama">Drama</option>
+            <option value="thriller">Thriller</option>
+          </select>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Popular
+          </label>
+        </div>
+      </form>
+      <div class="card" ng-class="{
+        'old': movie.year < 1995,
+        'modern': movie.year > 1995 && movie.year < 2000,
+        'new': movie.year > 2000
+      }" ng-repeat="movie in movies.favorites">
+        <img class="card-img-top" ng-src="{{movie.img}}" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{ movie.title }} <em>{{ movie.year }}</em></h4>
+          <p class="card-text">
+            <span ng-hide="!movie.popular"> 🌟 </span>
+            <span ng-show="movie.year > '2000'">🆕</span>
+            <section ng-switch="movie.category">
+              <p ng-switch-when="action">Action</p>
+              <p ng-switch-when="drama">Drama</p>
+              <p ng-switch-default></p>
+            </section>
+          </p>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Movie Year</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" ng-model="movie.year">
+          </div>
+
+          <a ng-href="http://www.imdb.com/title/{{movie.imdbId}}" class="btn btn-secondary link">IMDB link</a>
+          <a href="javascript:;" class="btn btn-primary link" ng-click="movies.addToLikes(movie);">Like</a>
+        </div>
+      </div>
+      <section class="likes-list">
+        <h3> Movie Likes List </h3>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="like in movies.likesList">
+            {{ like.title }} <em>{{ like.year }}</em>
+            <a href="javascript:;" class="btn btn-warning link" ng-click="movies.unlike($index);">Unlike</a>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+  </section>
+  <script src="js/app.js"></script>
+  <script src="js/MoviesController.js"></script>
+</body>
+
+</html>

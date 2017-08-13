@@ -212,3 +212,46 @@ input[type=checkbox]:checked + .toggle:after {
   margin: 12px 12px 0 50px;
   height: 22px;
 }
+
+/*Movie Controller Style*/
+
+.movie-list {
+
+}
+
+.movie-list h2{
+  text-align: center;
+}
+
+.movie-list .old {
+  color: #508991;
+}
+
+.movie-list .modern {
+  color: #09BC8A;
+}
+
+.movie-list .new {
+  color: #172A3A;
+}
+
+.movie-list .list-item{
+  margin: 20px 20px;
+}
+
+.movie-list .list-item a {
+  color: inherit;
+}
+
+.card {
+  width: 70vw;
+  margin: 20px auto;
+}
+
+.card .link {
+  margin: 10px 0;
+}
+
+.form-check .form-check-input {
+  display: inline;
+}
