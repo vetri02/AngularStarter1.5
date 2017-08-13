@@ -56,16 +56,16 @@
         <h4>Add a Movie</h4>
         <div class="form-group">
           <label for="movieTitle">Title</label>
-          <input type="text" class="form-control" id="movieTitle" placeholder="Inception">
+          <input type="text" class="form-control" id="movieTitle" placeholder="Inception" ng-model="movies.newTitle">
         </div>
         <div class="form-group">
           <label for="movieYear">Year</label>
-          <input type="tel" class="form-control" id="movieYear" placeholder="2010">
+          <input type="tel" class="form-control" id="movieYear" placeholder="2010" ng-model="movies.releaseYear">
         </div>
 
         <div class="form-group">
-          <label for="exampleFormControlSelect1">Category</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <label for="categorySelect">Category</label>
+          <select class="form-control" id="categorySelect" ng-model="movies.newCategory"">
             <option value="action">Action</option>
             <option value="drama">Drama</option>
             <option value="thriller">Thriller</option>
@@ -73,11 +73,15 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
+            <input type="checkbox" class="form-check-input" ng-model="movies.popularMovie">
             Popular
           </label>
         </div>
+
+        <button type="submit" class="btn btn-primary">Add a Movie</button>
       </form>
+
+      <h4> Movies </h4>
       <div class="card" ng-class="{
         'old': movie.year < 1995,
         'modern': movie.year > 1995 && movie.year < 2000,
@@ -105,7 +109,7 @@
         </div>
       </div>
       <section class="likes-list">
-        <h3> Movie Likes List </h3>
+        <h4> Movie Likes List </h4>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="like in movies.likesList">
             {{ like.title }} <em>{{ like.year }}</em>

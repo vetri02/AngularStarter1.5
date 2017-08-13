@@ -11,13 +11,20 @@
 
 
     <div class="todo" ng-controller="TodoController as todo">
+      <form class="todo__form" ng-submit="todo.addTodo();">
+        <input type="text" placeholder="Add New Todo!" ng-model="todo.newTodo"/>
+      </form>
       <ul class="todo__list">
         <li ng-repeat="item in todo.list">
           <input type="checkbox" id="todo-{{$index}}" ng-model="item.completed">
           <label class="toggle" for="todo-{{$index}}"></label>
-          <p>
+          <p ng-dblclick="showEditField = true" ng-hide="showEditField">
             {{item.title}}
           </p>
+          <div ng-show="showEditField">
+              <input type="text" ng-model="item.title" ng-blur="showEditField = false">
+          </div>
+          <a href="javascript:;"  ng-click="todo.removeTodo(item, $index)">&times;</a>
         </li>
       </ul>
     </div>

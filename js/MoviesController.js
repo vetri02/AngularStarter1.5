@@ -1,4 +1,11 @@
 function MoviesController() {
+
+  this.newTitle = "";
+  this.releaseYear = "";
+  this.newCategory = "";
+  this.popularMovie = false;
+
+
   this.favorites = [{
     "id": "forrest-gump",
     "title": "Forrest Gump",
@@ -38,6 +45,19 @@ function MoviesController() {
 
   this.unlike = function(index){
     this.likesList.splice(index, 1);
+  };
+
+  this.addMovie = function() {
+    this.favorites.unshift({
+      "id": this.newTitle.toLowerCase().split(" ").join("-"),
+      "title": this.newTitle,
+      "year": this.releaseYear,
+      "popular": this.popularMovie,
+      "category": this.newCategory,
+      "img": null,
+      "imdbId": null,
+      "actors": null
+    })
   };
 }
 
