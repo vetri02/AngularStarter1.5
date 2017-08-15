@@ -58,6 +58,13 @@ ul {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
+
+.title {
+  text-align: center;
+  margin: 10px;
+  font-weight: 400;
+}
+
 .todo__form {
   padding: 0 0 0 40px;
 }
@@ -213,6 +220,12 @@ input[type=checkbox]:checked + .toggle:after {
   height: 22px;
 }
 
+.movieLink {
+  text-align: center;
+    margin: 20px auto;
+    display: block;
+}
+
 /*Movie Controller Style*/
 
 .movie-list {
@@ -254,4 +267,8 @@ input[type=checkbox]:checked + .toggle:after {
 
 .form-check .form-check-input {
   display: inline;
+}
+
+.titleBlock {
+  text-align: center
 }

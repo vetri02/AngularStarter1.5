@@ -13,11 +13,21 @@
 
 <body>
 
-  <section class="container-fluid movie-list">
+  <!-- <section class="container-fluid movie-list">
 
     <h2 class="display-4"> Movie List </h2>
 
-    <!-- <section ng-controller="MoviesController as movies">
+     <section ng-controller="MoviesController as movies">
+       <div class="row titleBlock">
+        <div class="col">
+          <h4> Movies </h4>
+        </div>
+        <div class="col">
+          SortBy:
+          <a href="" ng-click="typeSort = 'year'"> Year </a>
+          <a href="" ng-click="typeSort = 'title'"> Title </a>
+        </div>
+      </div>
         <ul>
           <li
             class="list-item"
@@ -26,7 +36,7 @@
               'modern': movie.year > 1995 && movie.year < 2000,
               'new': movie.year > 2000
             }"
-            ng-repeat="movie in movies.favorites">
+            ng-repeat="movie in movies.favorites | orderBy:typeSort:true">
             <a ng-href="http://www.imdb.com/title/tt0109830/"><strong>{{ movie.title }}</strong></a>
             <span ng-hide="!movie.popular"> 🌟 </span>
             <span ng-show="movie.year > '2000'">🆕</span>
@@ -47,11 +57,11 @@
           </li>
         </ul>
 
-    </section> -->
+    </section>  -->
 
 
 
-    <section ng-controller="MoviesController as movies">
+     <section ng-controller="MoviesController as movies">
       <form ng-submit="movies.addMovie();" class="jumbotron">
         <h4>Add a Movie</h4>
         <div class="form-group">
@@ -81,18 +91,35 @@
         <button type="submit" class="btn btn-primary">Add a Movie</button>
       </form>
 
-      <h4> Movies </h4>
+      <div class="row titleBlock">
+        <div class="col">
+          <h4> Movies </h4>
+        </div>
+        <div class="col">
+          SortBy:
+          <a href="" ng-click="typeSort = 'year'"> Year </a>
+          <a href="" ng-click="typeSort = 'title'"> Title </a>
+        </div>
+      </div>
+
+      <strong> Search </strong>
+      <div class="input-group">
+        
+         <span class="input-group-addon">year</span>
+        <input type="text" class="form-control" aria-label="Search" ng-model="search">
+      </div>
+      
       <div class="card" ng-class="{
         'old': movie.year < 1995,
         'modern': movie.year > 1995 && movie.year < 2000,
         'new': movie.year > 2000
-      }" ng-repeat="movie in movies.favorites">
+      }" ng-repeat="movie in movies.favorites | orderBy:typeSort:true | filter:{ year :search}">
         <img class="card-img-top" ng-src="{{movie.img}}" alt="Card image cap">
         <div class="card-body">
           <h4 class="card-title">{{ movie.title }} <em>{{ movie.year }}</em></h4>
           <p class="card-text">
             <span ng-hide="!movie.popular"> 🌟 </span>
-            <span ng-show="movie.year > '2000'">🆕</span>
+            <span ng-show="movie.year > '2000'"> 🆕 </span>
             <section ng-switch="movie.category">
               <p ng-switch-when="action">Action</p>
               <p ng-switch-when="drama">Drama</p>
@@ -101,7 +128,7 @@
           </p>
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Movie Year</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" ng-model="movie.year">
+            <input type="text" class="form-control" placeholder="Movie Year" aria-label="Movie Year" aria-describedby="basic-addon1" ng-model="movie.year">
           </div>
 
           <a ng-href="http://www.imdb.com/title/{{movie.imdbId}}" class="btn btn-secondary link">IMDB link</a>
@@ -117,7 +144,7 @@
           </li>
         </ul>
       </section>
-    </section>
+    </section> 
 
   </section>
   <script src="js/app.js"></script>
